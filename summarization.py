@@ -51,9 +51,29 @@ def find_average_score(sentence_value: dict) -> int:
     return average
 
 
-def generate_summary(text) -> str:
+def generate_summary(sentences: list, sentence_value: dict, threshold: int) -> str:
+    sentence_count = 0
+    summary = str()
+
+    for sentence in sentences:
+        if sentence[:10] in sentence_value and sentence_value[sentence[:10]] > threshold:
+            summary += " " + sentence
+            sentence_count += 1
+
+    return summary
+
+
+def run_summarization(text):
     # Create word frequency table
     freq_table = create_frequency_table(text)
-
     # Tokenize sentences
     sentences = sent_tokenize(text)
+    sentence_scores = score_sentences(sentences, freq_table)
+    threshold = find_average_score(sentence_scores)
+
+    return generate_summary(sentences, sentence_scores, threshold)
+
+
+if __name__ == '__main__':
+    result = run_summarization(text_str)
+    print(result)
