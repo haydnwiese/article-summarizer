@@ -56,7 +56,7 @@ def generate_summary(sentences: list, sentence_value: dict, threshold: int) -> s
     summary = str()
 
     for sentence in sentences:
-        if sentence[:10] in sentence_value and sentence_value[sentence[:10]] > threshold:
+        if sentence[:10] in sentence_value and sentence_value[sentence[:10]] > (threshold * 1.3):
             summary += " " + sentence
             sentence_count += 1
 
@@ -73,7 +73,3 @@ def run_summarization(text):
 
     return generate_summary(sentences, sentence_scores, threshold)
 
-
-if __name__ == '__main__':
-    result = run_summarization(text_str)
-    print(result)
