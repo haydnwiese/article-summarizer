@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='summary.css') }}">
 </head>
 <body>
-    <div>
-        {{ summary }}
+    <div class="container">
+        <h1 class="header">Summary</h1>
+        <p>{{ summary }}</p>
     </div>
 </body>
 </html>

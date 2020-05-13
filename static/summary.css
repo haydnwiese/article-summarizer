@@ -1,0 +1,11 @@
+* {
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+}
+
+.container {
+    margin: 30px 100px 60px 100px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
