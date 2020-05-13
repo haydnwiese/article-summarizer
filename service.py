@@ -4,12 +4,14 @@ import re
 from summarization import run_summarization
 
 
-def create_summarization(article_url: str) -> str:
+def create_summarization(article_url: str) -> (str, str):
     scraped_data = request.urlopen(article_url)
     article = scraped_data.read()
 
     parsed_article = BeautifulSoup(article, 'lxml')
     paragraphs = parsed_article.find_all('p')
+
+    heading = parsed_article.find('h1').getText()
 
     article_text = ""
     for para in paragraphs:
@@ -23,4 +25,4 @@ def create_summarization(article_url: str) -> str:
     formatted_article_text = re.sub('[^a-zA-Z]', ' ', article_text)
     formatted_article_text = re.sub(r'\s+', ' ', formatted_article_text)
 
-    return run_summarization(article_text)
+    return run_summarization(article_text), heading
